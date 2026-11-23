@@ -11,3 +11,10 @@ export class StockInsuficienteError extends Error {
         this.name = "StockInsuficienteError";
     }
 }
+
+export class ValidacionError extends Error {
+    constructor(mensaje) {
+        super(mensaje);
+        this.name = "ValidacionError";
+    }
+}

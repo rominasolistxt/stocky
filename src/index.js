@@ -1,24 +1,18 @@
 import { ProductoNoEncontradoError, StockInsuficienteError } from "./errors.js";
-import { calcularStock, puedeSalir, registrarSalida, buscarPorId} from "./services/stockService.js"
-
-//Datos
-const productos = [
-    {
-        id: 1,
-        nombre: "Teclado",
-        precioCentavos: 10000,
-        stock: 15,
-        activo: true,
-    },
-    { id: 2, nombre: "Mouse", precioCentavos: 5000, stock: 8, activo: true },
-    { id: 3, nombre: "HDMI", precioCentavos: 8000, stock: 2, activo: true },
-];
+import { calcularStock, registrarSalida, buscarPorId} from "./services/stockService.js";
+import {Producto} from "./models/producto.js";
 
 //Uso
-const encontrado = buscarPorId(productos, 5);
+const productos = [
+    new Producto(1, "Teclado", 15000, 5, true),
+    new Producto(2, "Mouse", 1000, 15, true),
+    new Producto(3, "HDMI", 18000, 9, true),
+]
+
+const encontrado = buscarPorId(productos, 99);
 
 try {
-    registrarSalida(encontrado, 5);
+    registrarSalida(encontrado, 2);
     console.log("Salida exitosa");
 } catch (error) {
     if (error instanceof ProductoNoEncontradoError) {
